@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Inicio de Sesion</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+</head>
+
+<body class="body-bg-f8faff">
+<div class="account-area d-flex align-items-center justify-content-center">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container mt-5">
+            <div class="jumbotron">
+                <div class="account-content">
+                    <div class="account-header">
+                        <h3 class="text-center">Iniciar Sesión</h3>
+                    </div>
+
+                    <form id="loginForm" class="account-wrap" th:action="@{/api/login}" method="post">
+                        <div class="form-group mb-24 icon">
+                            <input type="email" class="form-control" th:field="*{user.email}" placeholder="Email">
+                        </div>
+                        <div class="form-group mb-24 icon">
+                            <input type="password" class="form-control" th:field="*{user.password}" placeholder="Password">
+                        </div>
+                        <div class="form-group mb-24">
+                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+       </div> 
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

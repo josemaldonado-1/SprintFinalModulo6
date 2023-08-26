@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Página de Inicio</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Dashboard <span th:text="${rolUsuario}"></span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/inicio">Inicio</a>
+            </li>
+            <li class="nav-item" th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                <a class="nav-link" href="/usuario/crear">Crear Usuarios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/api/logout">Cerrar Sesión</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">¡Hola, <span th:text="${nombreUsuario}"></span>!!</h1>
+        <p class="lead">Bienvenido a tu panel de administración.</p>
+        <hr class="my-4">
+        <p>Desde aquí puedes administrar usuarios</p>
+        <p>Lista de usuarios</p>
+        <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>RUT</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                    Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.id}"></td>
+                    <td th:text="${usuario.nombres}"></td>
+                    <td th:text="${usuario.apellidos}"></td>
+                    <td th:text="${usuario.rut}"></td>
+                    <td th:text="${usuario.email}"></td>
+                    <td th:text="${usuario.rol}"></td>
+                    <td >
+                      <a th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}" 
+                      th:href="@{usuario/editar/{id}(id=${usuario.id})}" class="btn btn-warning btn-sm">Editar</a>
+                      
+                      <a th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}" 
+                      th:href="@{usuario/eliminar/{id}(id=${usuario.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

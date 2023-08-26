@@ -1,0 +1,22 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: #192229 !important;
+	text-align: center!important;
+	
+	color: white !important;
+}
+
+.jumbotron {
+	background-color: #212E36 !important;
+	text-align: center !important;
+	color: white !important;
+	border-radius: 25px;
+}
+
+.table {
+	color: white !important;
+}
+
+
+    
